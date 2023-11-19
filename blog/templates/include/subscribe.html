@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% block body %}
+
+<div style="margin: 20px auto; width: 500px;">
+<img class="img-support" style="width: 150px;display: flex; align-items: center; margin: 30px auto;" src="/static/images/subscribe.png">
+    <h1 dir="rtl" style="font-size:28px; display: flex; justify-content: center; align-items: center; width: 100%;margin-top: 20px; margin-bottom: 20px;">اشتراک در خبرنامه ایمیلی</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button dir="rtl" type="submit" class="btn btn-primary btn-lg btn-block", value="register" style="display: flex; justify-content: center; align-items: center; width: 100%;" >ثبت نام</button>
+</form>
+</div>
+
+{% endblock %}

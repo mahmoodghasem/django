@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+    <img class="img-support" style="width: 150px; display: flex; align-items: center; margin: 30px auto;" src="/static/images/register.png">
+    <form style="width:300px; margin: 0 auto;" action="" method="post" novalidate>
+        <h1 dir="rtl" style="font-size:28px; text-align: center; margin-top: 20px; margin-bottom: 20px;">ثبت نام کاربر</h1>
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        {{ error }}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {{ form.as_p }}
+        <button dir="rtl" type="submit" class="btn btn-primary btn-lg btn-block" style="width: 300px; margin: 10px auto;">ثبت نام</button>
+    </form>
+{% endblock %}

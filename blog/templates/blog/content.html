@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+{% block title %} ارسال تیکت {% endblock %}
+{% block body %}
+    <form style="width: 70%; margin: 0px auto;" method="post">
+    <img class="img-support" style="width: 150px;display: flex; align-items: center; margin: 30px auto;" src="/static/images/technical-support.png">
+    <h1 dir="rtl" style="display: flex; justify-content: center; align-items: center; width: 100%;margin-top: 20px;">ارسال مطلب</h1>
+    {% csrf_token %}
+        {# as_div هرکدوم از از فیلدها را داخل تگ div نشون میده#}
+    {{ form.as_p }}
+    <button dir="rtl" type="submit" class="btn btn-primary btn-lg btn-block", value="ثبت تیکت" style="display: flex; justify-content: center; align-items: center; width: 100%;" >ارسال تیکت</button>
+    </form>
+
+{% endblock %}

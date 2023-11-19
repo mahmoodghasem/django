@@ -1,0 +1,77 @@
+{% extends 'base/base.html' %}
+{% load jformat %} {# برای تنظیمات زمان و تاریخ شمسی #}
+{% block title %} {{ post.title }} {% endblock %}
+
+    <div dir="rtl" style="display: flex; flex-direction: row;">
+    <div class="list-content" style="flex: 2;">
+    {% block body %}
+
+    <div dir="rtl" style="margin-left: 30px; border: 1px solid #eee; border-radius: 10px; padding: 20px">
+    <img style="border-radius:15px; width: 100%;" src="{{ post.photo.url }}">
+    <h1 style="margin: 30px 0 0 0; font-size: 22px;">{{ post.title }}</h1><br>
+    <small><img src="/static/images/writer.svg" width="35" height="35" style="margin-left: 5px;"></small>
+    نویسنده:{{ post.author.first_name }} {{ post.author.last_name }}<br>
+        {#  safe برای نمایش تغییرات ویرایشگر ckeditor استفاده می‌شود#}
+    <article style="font-size: 18px; line-height:30px; margin-top: 20px;">{{ post.content | safe }}</article><br>
+
+    <div style="margin-top: -20px; margin-bottom: 20px;">
+            {% for c in post.category.all %}
+        <a style="border:1px solid #005df1; padding:5px 20px; margin:3px; border-radius:10px; display: inline-block; text-decoration: none" href="#">{{ c.title }}</a>
+    {% endfor %}
+    </div>
+
+<div>
+
+  <img src="/static/images/calendar.svg" width="30" height="30" style="vertical-align: middle; margin-top: -6px;">
+
+        <span dir="rtl" style="direction: rtl">{{ post.created | jformat:"%Y » %B" }}</span>
+
+</div>
+    </div>
+{#--------------------------------------------------------- نوشتن کامنت ------------------------------------------------#}
+            <div style="margin-top: 20px; margin-left:30px; border:1px solid #e8e8e8; border-radius:10px; padding: 15px 20px 15px 0;">
+            <div style="display: flex;flex-direction: row;">
+            <div style="margin-left: 20px; display: block">
+            {% with comments.count as cm %}
+            {% for c in comments %}
+            <div style="color: #005df1;margin-bottom: 10px;">
+            <span style="flex: 1"><img src="/static/images/user.svg" width="35" height="35" style="margin-right: 5px;"></span>
+            {{ c.name }}
+            </div>
+            <div style="font-size: 16px; line-height:33px; margin-bottom:10px; border-bottom: 1px solid #dddddd">
+            {{ c.body | linebreaks }}
+            </div>
+            {% empty %}
+            کامنتی وجود ندارد!
+            {% endfor %}
+            {# ----------- تعداد کامنت -------------- #}
+            {{ cm }}comment{{ cm | pluralize }}
+            {# --------------------------------------------- #}
+             </div>
+            </div>
+
+        {% endwith %}
+        </div>
+
+<div style="margin-left: 30px;">
+    <form style="margin: 20px  auto;" action="{% url 'blog:post_comment' post.id %}" method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button dir="rtl" type="submit" class="btn btn-primary btn-lg btn-block", value="login " style="display: flex; justify-content: center; border-radius: 10px; align-items: center; height: 60px; width: 100%;" >ثبت نظر</button>
+    </form>
+</div>
+
+{#---------------------------------------------------------------------------------------------------------#}
+    </div>
+
+{#    <p>{{ post.publish | jformat:'%d %m %Y - %H:%M:%S' }}</p>#}
+{#    <p>{{ new_date  }}</p>#}
+{#    <p>{{ new_date  | date}}</p>#}
+{#    <p>{{ new_date  | date:'SHORT_DATE_FORMAT'  }}</p>#}
+{#    <p>{{ new_date  | date:'SHORT_DATETIME_FORMAT'  }}</p>#}
+{#    <p>{{ new_date  | date:'H:i:s ماه:M  چندم:m   روز:D  سال:Y'  }}</p>#}
+
+    <div class="sidebar" style="flex: 1">
+        {% include 'include/sidebar.html' %}
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'yekan-regular';
+    src: url('../fonts/IRANYekanX-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'yekan-bold';
+    src: url('../fonts/IRANYekanX-Bold.ttf') format('truetype');
+}
+*{
+    font-family: 'yekan-regular';
+}
+.errorlist{
+    display: none;
+}
+.menu-item:hover {
+    border-bottom: 1px solid #005df1;
+    padding-bottom: 5px;
+    caret-color: #005df1;
+}
+.form-control{
+    height: 50px;
+}
+#id_message{
+    height: 250px;
+}
+
+#id_old_password, #id_new_password1, #id_new_password2{
+    width: 400px;
+    height: 60px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    display: block;
+    padding-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+form{
+    margin: 0 auto;
+}
+.helptext ul{
+    padding-right: 5px;
+}
+.comment{
+    height: 200px;
+}

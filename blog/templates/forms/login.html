@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+{% block title %} صفحه ورود {% endblock %}
+{% block body %}
+    <img class="img-support" style="width: 150px;display: flex; align-items: center; margin: 30px auto;" src="/static/images/register.png">
+    <form style="width:300px; margin: 0 auto;" action=" " method="post" novalidate>
+    <h1 dir="rtl" style="font-size:28px; display: flex; justify-content: center; align-items: center; width: 100%;margin-top: 20px; margin-bottom: 20px;">ورود به سایت</h1>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button dir="rtl" type="submit" class="btn btn-primary btn-lg btn-block", value="login " style="display: flex; justify-content: center; align-items: center; width: 300px;" >ورود</button>
+    </form>
+{% endblock %}

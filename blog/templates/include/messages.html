@@ -1,0 +1,9 @@
+{% if messages %}
+  {% for m in messages %}
+    <div style="margin-bottom: 20px;">
+      <div dir="rtl" style="text-align:center; border-radius:15px; width: 100%; margin: 0 auto;" class="{% if 'success' in m.tags %}alert alert-primary{% elif 'error' in m.tags %}alert alert-danger{% elif 'info' in m.tags %}alert alert-success{% elif 'warning' in m.tags %}alert alert-warning{% endif %}" role="alert">
+        {{ m }}
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}
